@@ -82,12 +82,35 @@ function Sphere({
   );
 }
 
+// Single finger component
+function Finger({ 
+  pipAngle, 
+  dipAngle, 
+  xOffset 
+}: { 
+  pipAngle: number; 
+  dipAngle: number; 
+  xOffset: number;
+}) {
+  return (
+    <Joint rotation={[pipAngle, 0, 0]} position={[xOffset, -0.1, 0]}>
+      <Cylinder radius={0.01} height={0.035} color="#505050" position={[0, -0.0175, 0]} />
+      <Joint rotation={[dipAngle, 0, 0]} position={[0, -0.035, 0]}>
+        <Cylinder radius={0.008} height={0.025} color="#505050" position={[0, -0.0125, 0]} />
+      </Joint>
+    </Joint>
+  );
+}
+
 // Hand/Gripper component
 function Hand({ side, jointAngles }: { side: "left" | "right"; jointAngles: JointAngles }) {
   const thumbAbd = deg2rad(jointAngles[`${side}_thumb_abduction`] || 0);
   const thumbFlex = deg2rad(jointAngles[`${side}_thumb_flexion`] || 0);
   const fingersPip = deg2rad(jointAngles[`${side}_fingers_pip`] || 0);
   const fingersDip = deg2rad(jointAngles[`${side}_fingers_dip`] || 0);
+
+  // Finger positions spread across the palm
+  const fingerOffsets = [-0.027, -0.009, 0.009, 0.027];
 
   return (
     <group>
@@ -101,13 +124,15 @@ function Hand({ side, jointAngles }: { side: "left" | "right"; jointAngles: Join
         </Joint>
       </Joint>
 
-      {/* Fingers */}
-      <Joint rotation={[fingersPip, 0, 0]} position={[0, -0.1, 0]}>
-        <Cylinder radius={0.015} height={0.04} color="#505050" position={[0, -0.02, 0]} />
-        <Joint rotation={[fingersDip, 0, 0]} position={[0, -0.04, 0]}>
-          <Cylinder radius={0.012} height={0.03} color="#505050" position={[0, -0.015, 0]} />
-        </Joint>
-      </Joint>
+      {/* Four Fingers */}
+      {fingerOffsets.map((offset, i) => (
+        <Finger 
+          key={i} 
+          pipAngle={fingersPip} 
+          dipAngle={fingersDip} 
+          xOffset={offset} 
+        />
+      ))}
     </group>
   );
 }

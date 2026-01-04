@@ -28,7 +28,7 @@ export function JointPanel({
              j.name.startsWith("left_wrist")
     ),
     leftHand: robotSpec.joints.filter(
-      (j) => j.name.startsWith("left_thumb") || j.name.startsWith("left_fingers")
+      (j) => (j.name.startsWith("left_thumb") && !j.name.includes("opposition")) || j.name.startsWith("left_fingers")
     ),
     rightArm: robotSpec.joints.filter(
       (j) => j.name.startsWith("right_shoulder") || 
@@ -36,7 +36,7 @@ export function JointPanel({
              j.name.startsWith("right_wrist")
     ),
     rightHand: robotSpec.joints.filter(
-      (j) => j.name.startsWith("right_thumb") || j.name.startsWith("right_fingers")
+      (j) => (j.name.startsWith("right_thumb") && !j.name.includes("opposition")) || j.name.startsWith("right_fingers")
     ),
   };
 
