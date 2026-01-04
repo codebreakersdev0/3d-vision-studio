@@ -139,7 +139,7 @@ function Hand({ side, jointAngles }: { side: "left" | "right"; jointAngles: Join
 
 // Arm component
 function Arm({ side, jointAngles }: { side: "left" | "right"; jointAngles: JointAngles }) {
-  const mirror = side === "left" ? 1 : -1;
+  const mirror = side === "left" ? -1 : 1;
   
   const shoulderYaw = deg2rad(jointAngles[`${side}_shoulder_yaw`] || 0);
   const shoulderPitch = deg2rad(jointAngles[`${side}_shoulder_pitch`] || 0);
