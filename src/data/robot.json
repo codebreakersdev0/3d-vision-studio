@@ -1,0 +1,244 @@
+{
+  "robot": {
+    "name": "mobile_dual_arm_humanoid",
+    "version": "0.1.0",
+    "dof": {
+      "total": 29,
+      "motors": 2,
+      "servos": 27
+    }
+  },
+
+  "base": {
+    "link": "base_link",
+    "type": "differential",
+    "motors": [
+      { "name": "wheel_left", "axis": "Y" },
+      { "name": "wheel_right", "axis": "Y" }
+    ]
+  },
+
+  "joints": [
+    {
+      "name": "torso_yaw",
+      "parent": "base_link",
+      "child": "torso_link",
+      "type": "revolute",
+      "axis": "Z",
+      "limit": { "min": -180, "max": 180 }
+    },
+    {
+      "name": "torso_pitch",
+      "parent": "torso_link",
+      "child": "upper_torso_link",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": -45, "max": 45 }
+    },
+
+    {
+      "name": "head_yaw",
+      "parent": "upper_torso_link",
+      "child": "head_yaw_link",
+      "type": "revolute",
+      "axis": "Z",
+      "limit": { "min": -180, "max": 180 }
+    },
+    {
+      "name": "head_pitch",
+      "parent": "head_yaw_link",
+      "child": "head_pitch_link",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": -90, "max": 90 }
+    },
+    {
+      "name": "head_roll",
+      "parent": "head_pitch_link",
+      "child": "head_link",
+      "type": "revolute",
+      "axis": "Y",
+      "limit": { "min": -45, "max": 45 }
+    },
+
+    {
+      "name": "left_shoulder_yaw",
+      "parent": "upper_torso_link",
+      "child": "left_upper_arm",
+      "type": "revolute",
+      "axis": "Z",
+      "limit": { "min": -120, "max": 120 }
+    },
+    {
+      "name": "left_shoulder_pitch",
+      "parent": "left_upper_arm",
+      "child": "left_upper_arm_pitch",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": -120, "max": 120 }
+    },
+    {
+      "name": "left_elbow_flex",
+      "parent": "left_upper_arm_pitch",
+      "child": "left_forearm",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": 0, "max": 135 }
+    },
+    {
+      "name": "left_elbow_roll",
+      "parent": "left_forearm",
+      "child": "left_forearm_roll",
+      "type": "revolute",
+      "axis": "Y",
+      "limit": { "min": -90, "max": 90 }
+    },
+    {
+      "name": "left_wrist_pitch",
+      "parent": "left_forearm_roll",
+      "child": "left_wrist_pitch",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": -90, "max": 90 }
+    },
+    {
+      "name": "left_wrist_yaw",
+      "parent": "left_wrist_pitch",
+      "child": "left_hand",
+      "type": "revolute",
+      "axis": "Z",
+      "limit": { "min": -90, "max": 90 }
+    },
+
+    {
+      "name": "left_thumb_abduction",
+      "parent": "left_hand",
+      "child": "left_thumb_abd",
+      "type": "revolute",
+      "axis": "Y",
+      "limit": { "min": -45, "max": 45 }
+    },
+    {
+      "name": "left_thumb_flexion",
+      "parent": "left_thumb_abd",
+      "child": "left_thumb_flex",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": 0, "max": 90 }
+    },
+    {
+      "name": "left_thumb_opposition",
+      "parent": "left_thumb_flex",
+      "child": "left_thumb_tip",
+      "type": "revolute",
+      "axis": "Z",
+      "limit": { "min": 0, "max": 60 }
+    },
+    {
+      "name": "left_fingers_pip",
+      "parent": "left_hand",
+      "child": "left_fingers_pip",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": 0, "max": 90 }
+    },
+    {
+      "name": "left_fingers_dip",
+      "parent": "left_fingers_pip",
+      "child": "left_fingers_tip",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": 0, "max": 60 }
+    },
+
+    {
+      "name": "right_shoulder_yaw",
+      "parent": "upper_torso_link",
+      "child": "right_upper_arm",
+      "type": "revolute",
+      "axis": "Z",
+      "limit": { "min": -120, "max": 120 }
+    },
+    {
+      "name": "right_shoulder_pitch",
+      "parent": "right_upper_arm",
+      "child": "right_upper_arm_pitch",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": -120, "max": 120 }
+    },
+    {
+      "name": "right_elbow_flex",
+      "parent": "right_upper_arm_pitch",
+      "child": "right_forearm",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": 0, "max": 135 }
+    },
+    {
+      "name": "right_elbow_roll",
+      "parent": "right_forearm",
+      "child": "right_forearm_roll",
+      "type": "revolute",
+      "axis": "Y",
+      "limit": { "min": -90, "max": 90 }
+    },
+    {
+      "name": "right_wrist_pitch",
+      "parent": "right_forearm_roll",
+      "child": "right_wrist_pitch",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": -90, "max": 90 }
+    },
+    {
+      "name": "right_wrist_yaw",
+      "parent": "right_wrist_pitch",
+      "child": "right_hand",
+      "type": "revolute",
+      "axis": "Z",
+      "limit": { "min": -90, "max": 90 }
+    },
+
+    {
+      "name": "right_thumb_abduction",
+      "parent": "right_hand",
+      "child": "right_thumb_abd",
+      "type": "revolute",
+      "axis": "Y",
+      "limit": { "min": -45, "max": 45 }
+    },
+    {
+      "name": "right_thumb_flexion",
+      "parent": "right_thumb_abd",
+      "child": "right_thumb_flex",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": 0, "max": 90 }
+    },
+    {
+      "name": "right_thumb_opposition",
+      "parent": "right_thumb_flex",
+      "child": "right_thumb_tip",
+      "type": "revolute",
+      "axis": "Z",
+      "limit": { "min": 0, "max": 60 }
+    },
+    {
+      "name": "right_fingers_pip",
+      "parent": "right_hand",
+      "child": "right_fingers_pip",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": 0, "max": 90 }
+    },
+    {
+      "name": "right_fingers_dip",
+      "parent": "right_fingers_pip",
+      "child": "right_fingers_tip",
+      "type": "revolute",
+      "axis": "X",
+      "limit": { "min": 0, "max": 60 }
+    }
+  ]
+}
